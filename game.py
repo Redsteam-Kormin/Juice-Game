@@ -32,6 +32,11 @@ superlucky = random.randint(1,100)
 fruits = ["Green Apple", "Grape", "Mango", "Pineapple", "Orange", "Peach", "Lemon","Lime"]
 superfruits = ["Golden Apple", "Gemmy Grape", "67 Mango", "Big Pineapple", "Tangerine", "Apricot", "Pink Lemon", "Key Lime"]
 
+#Brewery Upgrade Variables
+brewlevel = 0
+fundcosts = [100, 1000, 10000, 100000, 1000000, 10000000, 100000000]
+brewmultiplier = [1,2,4,8,16,32,64]
+
 clear() #cool title card time
 print(',-,---.                              .---.             .      .      ')   
 print(" '|___/ ,-. ,-. . , , ,-. ,-. . .    \___  . ,-,-. . . |  ,-. |- ,-. ,-.")
@@ -75,7 +80,7 @@ while 1:
     print("[ ] [ ] [ ] [ ] [ ] [ ]")
     print("")
     print("==========Actions==========")
-    print("Sell | Skip | Drink | Quit")
+    print("Sell | Skip | Drink | Quit | Fund")
     action = str(input("Make an Action: "))
     clear()
 
@@ -139,6 +144,29 @@ while 1:
         print(f"You made {money} dollars! Good Work.")
         print(name)
         quit()
+    #funding stuff action or something
+    if action == 'fund' or action == 'Fund':
+        #variables for this stuff
+        fundact = 0
+        #start of fund stuff
+        print("Funding Options:")
+        print("------------------")
+        print("1. Brewery Upgrade ")
+        print("     *Make more Money*")
+        print("2. Juice Research ")
+        print("     *Make new Juice*")
+        print("------------------")
+        print("(Please enter number of option)")
+        fundact = int(input("What would you like to fund? "))
+        if fundact == 1:
+            print("-- Brewery Upgrade --")
+            print(f"Current Level: {brewlevel}")
+            print(f"    Current Multiplier: {brewmultiplier[brewlevel]}")
+            print(f"Next Level: {brewlevel+1}")
+            print(f"    Next Multiplier: {brewmultiplier[brewlevel+1]}")
+            if money >= fundcosts[brewlevel]:
+                brewlevel += 1
+        
     if preday != day:
         goodday = random.randint(1,25)
         superday = random.randint(1,100)
