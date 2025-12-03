@@ -149,16 +149,19 @@ while 1:
         #variables for this stuff
         fundact = 0
         #start of fund stuff
+        clear()
         print("Funding Options:")
         print("------------------")
         print("1. Brewery Upgrade ")
         print("     *Make more Money*")
         print("2. Juice Research ")
         print("     *Make new Juice*")
+        print("     *Costs 1000 Moneys*")
         print("------------------")
         print("(Please enter number of option)")
         fundact = int(input("What would you like to fund? "))
         if fundact == 1:
+            clear()
             print("-- Brewery Upgrade --")
             print(f"Current Level: {brewlevel}")
             print(f"    Current Multiplier: {brewmultiplier[brewlevel]}")
@@ -166,6 +169,22 @@ while 1:
             print(f"    Next Multiplier: {brewmultiplier[brewlevel+1]}")
             if money >= fundcosts[brewlevel]:
                 brewlevel += 1
+                money -= fundcosts[brewlevel]
+                print(f"Brewery is now level {brewlevel}")
+                s(2)
+                clear()
+                day += 1
+        if fundact == 2:
+            print("Juice Making time!")
+            if money >= 1000:
+                money -= 1000
+                print("Your juice maker made a new juice!")
+                juices.append(f"{fruit} Juice")
+                print(f"They made {fruit} Juice!")
+                if sfruit == 1:
+                    juicecosts.append(random.randint(10,20)*moneyextra)
+                else:
+                    juicecosts.append(random.randint(1,10)*moneyextra)
         
     if preday != day:
         goodday = random.randint(1,25)
@@ -179,7 +198,7 @@ while 1:
         if badday == luck:
             badmoney += 1
             badstuff = random.randint(1,10)
-        money += (mpd*moneyextra)/badmoney
+        money += ((mpd*moneyextra)/badmoney)*brewmultiplier[brewlevel]
         fruit = 0
         juicecheck = random.randint(1,25)
         superjuicecheck = random.randint(1,100)
