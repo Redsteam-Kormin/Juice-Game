@@ -38,14 +38,14 @@ fundcosts = [100, 1000, 10000, 100000, 1000000, 10000000, 100000000]
 brewmultiplier = [1,2,4,8,16,32,64]
 
 clear() #cool title card time
-print(',-,---.                              .---.             .      .      ')   
-print(" '|___/ ,-. ,-. . , , ,-. ,-. . .    \___  . ,-,-. . . |  ,-. |- ,-. ,-.")
-print(" ,|   \ |   |-' |/|/  |-' |   | |        \ | | | | | | |  ,-| |  | | |  ")
-print("`-^---' '   `-' ' '   `-' '   `-|    `---' ' ' ' ' `-' `' `-^ `' `-' '  ")
-print("                               /|                                       ")
-print("                              `-'                                       ")
-print(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-print('                  "The game where you brew juice."')
+print(",-_/                ,---.       ")"        
+print("'  | . . . ,-. ,-.  |  -'  ,-. ,-,-. ,-.")
+print("   | | | | |   |-'  |  ,-' ,-| | | | |-'")
+print("   | `-^ ' `-' `-'  `---|  `-^ ' ' ' `-'")
+print("/` |                 ,-.|               ")
+print("`--'                 `-+'            ")   
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print('     "The game where you brew juice."')
 print("") #VVV Ask for Brewery Name VVV
 print("Your brewery will be named 'The [insert thing here] Brewery'.")
 something = str(input("What will your brewery be called? "))
