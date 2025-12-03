@@ -5,3 +5,6 @@ Using new list methods and such to create classes without using classes bc i'm t
 Drink juice while at 90+ mental health to get extra money.
 Don't sell juice if you have 1 left.
 Highscores will prob go on the site maybe?
+
+# Replit Project or something
+https://replit.com/@Redsteam-Kormin/Juice-Game?v=1
