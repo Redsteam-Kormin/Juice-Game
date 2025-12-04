@@ -78,7 +78,7 @@ while 1:
     print(name)
     print("Rank: ", rank)
     print("Brewery Level: ", brewlevel)
-    print("Next Upgrade Cost: ", fundcosts[brewlevel+1])
+    print("Next Upgrade Cost: ", fundcosts[brewlevel])
     print("~~~~++++~~~~++++~~~~")
     print("")
     print("Day: ", day)
