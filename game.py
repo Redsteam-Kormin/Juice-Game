@@ -57,6 +57,7 @@ while 1:
     mpd = 0
     for x in juicecosts:
         mpd += x
+        mpd == mpd*brewmultiplier
     if mp > 100: 
         mp = 100
     moneyextra = 1
@@ -66,6 +67,8 @@ while 1:
     print("~~~~++++~~~~++++~~~~")
     print(name)
     print("Rank: ", rank)
+    print("Brewery Level: ", brewlevel)
+    print("Next Upgrade Cost: ", fundcosts[brewlevel+1],")
     print("~~~~++++~~~~++++~~~~")
     print("")
     print("Day: ", day)
@@ -185,6 +188,7 @@ while 1:
                     juicecosts.append(random.randint(10,20)*moneyextra)
                 else:
                     juicecosts.append(random.randint(1,10)*moneyextra)
+                s(2)
         
     if preday != day:
         goodday = random.randint(1,25)
@@ -213,10 +217,10 @@ while 1:
             juices.append(f"{fruit} Juice")
             print(f"They made {fruit} Juice!")
             if sfruit == 1:
-                juicecosts.append(random.randint(10,20)*moneyextra)
+                juicecosts.append(random.randint(10,money)*moneyextra)
             else:
-                juicecosts.append(random.randint(1,10)*moneyextra)
-        
+                juicecosts.append(random.randint(1,(money/money))*moneyextra)
+            s(2)
         #events
             if sillystuff == 10:
                 print("Investors like your brewery. You made 2000 dollars!")
