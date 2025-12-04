@@ -30,6 +30,7 @@ foundjuice = 0
 juicecount = 1
 badmoney = 1
 drinks = 0
+mmy = 0
 luck = random.randint(1,25)
 superlucky = random.randint(1,100)
 fruits = ["Green Apple", "Grape", "Mango", "Pineapple", "Orange", "Peach", "Lemon","Lime"]
@@ -90,6 +91,7 @@ while 1:
     print("        Juices")
     print(juices)
     print("Money A Day: ", mpd)
+    print("Money made Yesterday: ", mmy)
     print("[ ] [ ] [ ] [ ] [ ] [ ]")
     print("")
     print("==========Actions==========")
@@ -104,7 +106,7 @@ while 1:
             if mp > 100:
                 mp = 100
         if mp == 100:
-            moneyextra += 1
+            moneyextra += 2
             mpchange = 0
         else: 
             mp += 20
@@ -239,7 +241,8 @@ while 1:
         if badday == luck:
             badmoney += 1
             badstuff = random.randint(1,10)
-        money += ((mpd*moneyextra)/badmoney)*brewmultiplier[brewlevel]
+        mmy = ((mpd*moneyextra)/badmoney)*brewmultiplier[brewlevel]
+        money += mmy
         fruit = 0
         juicecheck = random.randint(1,25)
         superjuicecheck = random.randint(1,100)
@@ -295,6 +298,8 @@ while 1:
         bigboss = 1
     if drinks >= 100:
         alcoholism = 1
+        juices.append("Barley Juice With Hops")
+        juicecosts.append((money*money)*brewmultiplier[brewlevel])
     for x in juices:
         if x  == "67 Mango Juice":
             unfunny = 1
