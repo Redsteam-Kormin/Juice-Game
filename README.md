@@ -8,3 +8,5 @@ Highscores will prob go on the site maybe?
 
 # Replit Project or something
 https://replit.com/@Redsteam-Kormin/Juice-Game?v=1
+
+# 🎨Please Run "pip install termcolor" in the Shell First.🎨

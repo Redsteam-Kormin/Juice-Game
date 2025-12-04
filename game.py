@@ -1,11 +1,14 @@
+#PLEASE INSTALL TERMCOLOR!
 import os, sys, time, random
 from os import system
 from time import sleep as s
+from termcolor import colored as c
 
 def clear():
     system('clear')
 def quit():
     sys.exit()
+
 #to anyone trying to fix/modify my code, have fun, i'm so bad at ts I hate looking at my own code.
 
 badstuff = 0
@@ -83,7 +86,7 @@ while 1:
     print("[ ] [ ] [ ] [ ] [ ] [ ]")
     print("")
     print("==========Actions==========")
-    print("Sell | Skip | Drink | Quit | Fund")
+    print("Sell | Skip | Drink | Quit | Fund | Acheivements (ACH)")
     action = str(input("Make an Action: "))
     clear()
 
@@ -189,7 +192,34 @@ while 1:
                 else:
                     juicecosts.append(random.randint(1,10)*moneyextra)
                 s(2)
-        
+    #acheivements
+    if action == 'ACH' or action == 'acheivements' or action == "ach" or action == "Acheivements":
+        #print acheivements (handler is at bottom.)
+        clear()
+        print("++++~~~~++++~~~~++++~~~~++++ACHEIVEMENTS++++~~~~++++~~~~++++~~~~++++")
+        if bigboss == 1:
+            print(c("The Big Boss: Get 1000000 Moneys", 'green'))
+        else:
+            print(c("The Big Boss: Get 1000000 Moneys", 'red'))
+        if alcoholism == 1:
+            print(c("True Alcoholism: Drink 100 Drinks. (Gives a SPECIAL DRINK)", 'green'))
+        else:
+             print(c("True Alcoholism: Drink 100 Drinks. (Gives a SPECIAL DRINK)", 'red'))
+        if unfunny == 1:
+            print(c("Unfunny Jokester: Get a 67 Mango Juice", 'green'))
+        else:
+            print(c("Unfunny Jokester: Get a 67 Mango Juice", 'red'))
+        if connoisseur == 1:
+            print(c("Juice Connoisuer: Have 10 Juices", 'green'))
+        else:
+            print(c("Juice Connoisuer: Have 10 Juices", 'red'))
+        if broke == 1:
+            print(c("Broke: Get down to 0 Moneys", 'green'))
+        else:
+            print(c("Broke: Get down to 0 Moneys", 'red'))
+        print("")
+        input("Press Enter to Continue")
+    
     if preday != day:
         goodday = random.randint(1,25)
         superday = random.randint(1,100)
@@ -252,3 +282,19 @@ while 1:
             rank = "Hobby Obsessed Chuderooney"
         if money == 0:
             rank = "It's Not Working for you. Tried Gambling?"
+
+    #ACHEIVEMENT HANDLER
+    if money >= 1000000:
+        bigboss = 1
+    if drinks >= 100:
+        alcoholism = 1
+    for x in juices:
+        if x  == "67 Mango Juice":
+            unfunny = 1
+    if juicecount >= 10:
+        connoisseur = 1
+    if money == 0:
+         broke = 1
+     #end of acheivement handler
+         #end of game
+        
