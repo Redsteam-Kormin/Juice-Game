@@ -40,6 +40,13 @@ brewlevel = 0
 fundcosts = [100, 1000, 10000, 100000, 1000000, 10000000, 100000000]
 brewmultiplier = [1,2,4,8,16,32,64]
 
+#acheivements
+bigboss = 0
+alcoholism = 0
+unfunny = 0
+connoisseur = 0
+broke = 0
+
 clear() #cool title card time
 print(",-_/                ,---.       ")
 print("'  | . . . ,-. ,-.  |  -'  ,-. ,-,-. ,-.")
