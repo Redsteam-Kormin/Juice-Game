@@ -1,3 +1,4 @@
+from termcolor import colored as c
 #variables
 bigboss = 0
 alcoholism = 0

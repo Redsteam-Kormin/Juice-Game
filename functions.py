@@ -1,3 +1,6 @@
+import os, sys, time, random
+from os import system
+from time import sleep as s
 #clear, but easier to write.
 def clear():
     system('clear')
