@@ -8,7 +8,7 @@ def quit():
     print(name)
     sys.exit()
 #skip action  
-def skip()
+def skip():
   if action == "Skip" or action == 'skip':
     day +=1
     clear()
