@@ -3,6 +3,18 @@ import os, sys, time, random
 from os import system
 from time import sleep as s
 from termcolor import colored as c
+from datetime import datetime
+
+today = datetime.now()
+month = today.month
+
+if month == 12:
+    print("HOHOHO MERRY CHRISTMAS")
+    print("HERES A PRESENT FOR YOU")
+    print("~~~~~~~~~~+o+~~~~~~~~~~")
+    print("You got Cranberry Juice!")
+    print("")
+    input("Press Enter to Continue")
 
 def clear():
     system('clear')
@@ -50,6 +62,17 @@ alcoholism = 0
 unfunny = 0
 connoisseur = 0
 broke = 0
+
+if month == 12:
+    juices.append("Cranberry Juice")
+    juicecosts.append(25)
+if month == 10:
+    print("Happy Halloween!")
+    print("You got Spider Juice!")
+    juices.append("Spider Juice")
+    juicecosts.append(25)
+    print("")
+    input("Press Enter to Continue")
 
 clear() #cool title card time
 print(",-_/                ,---.       ")
