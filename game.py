@@ -3,11 +3,16 @@ import os, sys, time, random
 from os import system
 from time import sleep as s
 from termcolor import colored as c
-from functions import *
-from acheivements import *
+
+def clear():
+    system('clear')
+def quit():
+    sys.exit()
 
 #to anyone trying to fix/modify my code, have fun, i'm so bad at ts I hate looking at my own code.
-
+daysober = 0
+drinkstreak = 0
+sober = 0
 badstuff = 0
 rank = "Unrecognizable Brewery."
 name = "The Nothing Brewery"
@@ -22,6 +27,7 @@ action = "b"
 mp = 100
 moneyextra = 1
 mpchange = 0
+work = 1
 selljuice = -1
 foundjuice = 0
 juicecount = 1
@@ -35,10 +41,15 @@ superfruits = ["Golden Apple", "Gemmy Grape", "67 Mango", "Big Pineapple", "Tang
 
 #Brewery Upgrade Variables
 brewlevel = 0
-fundcosts = [100, 1000, 10000, 100000, 1000000, 10000000, 100000000]
-brewmultiplier = [1,2,4,8,16,32,64]
+fundcosts = [100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000, 10000000000, 100000000000,10000000000000, 1000000000000000, 10000000000000000,100000000000000000, 1000000000000000000, 10000000000000000000]
+brewmultiplier = [1,2,4,8,16,32,64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768]
 
-#acheivements are now in acheivements.py
+#acheivements
+bigboss = 0
+alcoholism = 0
+unfunny = 0
+connoisseur = 0
+broke = 0
 
 clear() #cool title card time
 print(",-_/                ,---.       ")
@@ -72,6 +83,11 @@ while 1:
     print("Rank: ", rank)
     print("Brewery Level: ", brewlevel)
     print("Next Upgrade Cost: ", fundcosts[brewlevel])
+    print("Brewery Multiplier: ", brewmultiplier[brewlevel])
+    if fundcosts[brewlevel] < money:
+        print(c("You can afford the next upgrade!", 'light_green'))
+    else:
+        print(c("You can't afford the next upgrade.", 'red'))
     print("~~~~++++~~~~++++~~~~")
     print("")
     print("Day: ", day)
@@ -87,7 +103,7 @@ while 1:
     print("[ ] [ ] [ ] [ ] [ ] [ ]")
     print("")
     print("==========Actions==========")
-    print("Sell | Skip | Drink | Quit | Fund | Acheivements (ACH)")
+    print("Sell | Work | Drink | Quit | Fund | Acheivements (ACH)")
     action = str(input("Make an Action: "))
     clear()
 
@@ -109,22 +125,130 @@ while 1:
             print("")
         drinks += 1
         day += 1
-        daysober = 0
-        drinkstreak +=1
-#actions and stuff
-    skip()
-    sell()
-    
+
+    if action == "Work" or action == 'work':
+        day +=1
+        work = random.randint(1,10)
+        chance = random.randint(1,10)
+        if chance == 5:
+            print("Easy Day today! You got some mp back!")
+            mp += random.randint(10,20)
+            s(0.5)
+
+    if action == "Sell" or action == 'sell':
+        juicefound = 0
+        print("Juices: ")
+        print(juices)
+        print("")
+        print("What Would you like to sell?")
+        print("----------------------------")
+        print("Choose A Juice's Name, Must be Case-Sensitive.")
+        selljuice = str(input("Juice Name: "))
+
+        for x in juices:
+            print(x)
+            if selljuice == x:
+                juicefound = 1
+            if juicefound == 1:
+                juiceindex = juices.index(x)
+                y = juicecosts[juiceindex]
+                juiceprice = (y*moneyextra)+random.randint(1,20)*2
+                money += juiceprice
+                juicecosts.remove(y)
+                juices.remove(x)
+                print(f"You sold that juice and made {juiceprice}")
+        for x in juices:
+            if x == selljuice:
+                print("it didnt work.")
+        day += 1
+        juicecount = 0
+        for x in juices:
+            juicecount +=1
+        if juicecount == 0:
+            print("You can't make money if you have nothing to sell. You Lose!")
+            quit()
+            break
     if action == 'quit' or action == 'Quit':
+        clear()
+        print(f"You made {money} dollars! Good Work.")
+        print(name)
         quit()
-        
     #funding stuff action or something
     if action == 'fund' or action == 'Fund':
-        fund()
+        #variables for this stuff
+        fundact = 0
+        #start of fund stuff
+        clear()
+        print("Funding Options:")
+        print("------------------")
+        print("1. Brewery Upgrade ")
+        print("     *Make more Money*")
+        print("2. Juice Research ")
+        print("     *Make new Juice*")
+        print("     *Costs 1000 Moneys*")
+        print("------------------")
+        print("(Please enter number of option)")
+        fundact = int(input("What would you like to fund? "))
+        if fundact == 1 and brewlevel != 16:
+            clear()
+            print("-- Brewery Upgrade --")
+            print(f"Current Level: {brewlevel}")
+            print(f"    Current Multiplier: {brewmultiplier[brewlevel]}")
+            print(f"Next Level: {brewlevel+1}")
+            print(f"    Next Multiplier: {brewmultiplier[brewlevel+1]}")
+            if money >= fundcosts[brewlevel]:
+                brewlevel += 1
+                money -= fundcosts[brewlevel-1]
+                print(f"Brewery is now level {brewlevel}")
+                s(2)
+                clear()
+                day += 1
+        if fundact == 2:
+            print("Juice Making time!")
+            if money >= 1000:
+                money -= 1000
+                fruit = fruits[random.randint(0,7)]
+                print("Your juice maker made a new juice!")
+                juices.append(f"{fruit} Juice")
+                print(f"They made {fruit} Juice!")
+                if sfruit == 1:
+                    juicecosts.append(random.randint(10,20)*moneyextra)
+                else:
+                    juicecosts.append(random.randint(1,10)*moneyextra)
+                s(2)
+        if fundact == 1 and brewlevel == 16:
+            print("You can't upgrade anymore. You're already the best juicemaker.")
     #acheivements
     if action == 'ACH' or action == 'acheivements' or action == "ach" or action == "Acheivements":
         #print acheivements (handler is at bottom.)
-        acheivements()
+        clear()
+        print("++++~~~~++++~~~~++++~~~~++++ACHEIVEMENTS++++~~~~++++~~~~++++~~~~++++")
+        if bigboss == 1:
+            print(c("The Big Boss: Get 1000000 Moneys", 'light_green'))
+        else:
+            print(c("The Big Boss: Get 1000000 Moneys", 'red'))
+        if alcoholism == 1:
+            print(c("True Alcoholism: Drink 100 Drinks. (Gives a SPECIAL DRINK)", 'light_green'))
+        else:
+             print(c("True Alcoholism: Drink 100 Drinks. (Gives a SPECIAL DRINK)", 'red'))
+        if unfunny == 1:
+            print(c("Unfunny Jokester: Get a 67 Mango Juice", 'light_green'))
+        else:
+            print(c("Unfunny Jokester: Get a 67 Mango Juice", 'red'))
+        if connoisseur == 1:
+            print(c("Juice Connoisuer: Have 10 Juices", 'light_green'))
+        else:
+            print(c("Juice Connoisuer: Have 10 Juices", 'red'))
+        if broke == 1:
+            print(c("Broke: Get down to 0 Moneys", 'light_green'))
+        else:
+            print(c("Broke: Get down to 0 Moneys", 'red'))
+        if sober == 1:
+            print(c("Sober: Never Drink for 100 days.", 'light_green'))
+        else:
+            print(c("Sober: Never Drink for 100 days.", 'red'))
+        print("")
+        input("Press Enter to Continue")
     
     if preday != day:
         goodday = random.randint(1,25)
@@ -138,12 +262,11 @@ while 1:
         if badday == luck:
             badmoney += 1
             badstuff = random.randint(1,10)
-        mmy = ((mpd*moneyextra)/badmoney)*brewmultiplier[brewlevel]
+        mmy = ((mpd*moneyextra)/badmoney)
+        mmy *= brewmultiplier[brewlevel]
+        mmy *= work
         money += mmy
         fruit = 0
-        if action != "drink" or action != "Drink":
-            drinkstreak = 0
-            daysober += 1
         juicecheck = random.randint(1,25)
         superjuicecheck = random.randint(1,100)
         sfruit = 0
@@ -161,16 +284,28 @@ while 1:
             else:
                 juicecosts.append(random.randint(1,(money/money))*moneyextra)
             s(2)
+        if action == "Drink" or action == "drink":
+            drinkstreak += 1
+            daysober = 0
+        else:
+            drinkstreak = 0
+            daysober += 1
         #events
-            if sillystuff == 10:
+            if sillystuff >= 10 and sillystuff < 20:
                 print("Investors like your brewery. You made 2000 dollars!")
                 money += 2000
-            if sillystuff == 20:
+            if sillystuff >= 20 and sillystuff < 30:
                 print("Investors sold their stocks in your company. Lose 100 Dollars.")
                 money -= 100
+            if sillystuff >= 30 and sillystuff < 40:
+                print("Today had nice weather. Go back to 100 Mental Health.")
+                mp = 100
+            if sillystuff >= 40 and sillystuff < 50:
+                print("Bad Weather. Lose 10 Mental Health.")
+                mp -= 10
         #end of events
         print("The day has ended!")
-        s(2)
+        s(1)
         clear()
         if money < 0:
             money = 0
@@ -207,6 +342,21 @@ while 1:
         connoisseur = 1
     if money == 0:
          broke = 1
+    if drinkstreak == 0 and daysober >= 100 and "Amezake" not in Juices:
+        sober = 1
+        juices.append("Amezake")
+        juicecosts.append(1000000)
+        print("You got Amezake")
+        print("Nice work being LAME. It does cost 1000000, so prepare to be rich.")
+        input()
      #end of acheivement handler
-         #end of game
+    if mp <= 0:
+        print("You died, Kurt Kobane style.")
+        print("You made ", money, " dollars.")
+        print("You drank ", drinks, " drinks.")
+        print("You had ", day, " days.")
+        print("You were ", rank, ".")
+        print(name)
+        quit()
+             #end of game
         
